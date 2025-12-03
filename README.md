@@ -1,5 +1,11 @@
 # CrispyLog
- A Godot 4.4.x+ based logging tool that works for games and applications, alike. Tool is intended to create reeadable, traceable logs that help track-down common issues in your application while provided verbose logging features.
+A Godot 4.x+ based logging tool that works for games and applications, alike. Tool is intended to create reeadable, traceable logs that help track-down common issues in your application while providing verbose logging features.
+
+Developed and built in 4.4.1.
+
+## Trello Document / Roadmap
+
+[CrispyLog Trello](https://trello.com/b/YDEvNpxc/crispylog)
 
 ## How to Use this Plugin
 
@@ -8,26 +14,33 @@
 - Download and place into this directory:
   - `res://addons/` so it should look like `res://addons/CrispyLog`
 - Go to `Project -> Project Settings -> Plugins`
- - Enable the plugin by checking the `On` checkbox - it will look like below
- -  [x] On | CrispyLog | x.x.x | Jeff Miller
+  - Enable the plugin by checking the `On` checkbox - it will look like below
+  -  [x] On | CrispyLog | x.x.x | Jeff Miller
 - Go to `General -> CrispyLog`
- - Open `Color Pairs` Dictionary
- - If you don't like a particular color, you can change it here.
-- You can change the `Default Print` to which ever classification you might like.
- - Available Enums:
-   - `Trace`
-   - `Verbose`
-   - `Debug`
-   - `System`
-   - `Info` (Defaults to this)
-   - `Success`
-   - `Warning`
-   - `Error`
-   - `Critical`
-   - `Fatal`
-   - `Assert`
-   - `Network`
-   - `Performance`
+  - Open `Color Pairs` Dictionary
+  - If you don't like a particular color, you can change it here.
+- There are various booleans to help manage log flow.
+  - [] Print the Stack
+  - [] Print to Console
+  - [] Write to Log
+  - [] Use Iso Time
+- You can change the `Default Log` to which ever classification you might like.
+- You can change the `Default File Log` to which ever classification you might like.
+  - Available Enums:
+    - `None`         = 0
+    - `Trace`        = 1
+    - `Verbose`      = 2
+    - `Debug`        = 3
+    - `System`       = 4
+    - `Info`         = 5 (Defaults to this)
+    - `Success`      = 6
+    - `Warning`      = 7
+    - `Error`        = 8
+    - `Critical`     = 9
+    - `Fatal`        = 10
+    - `Assert`       = 11
+    - `Network`      = 12
+    - `Performance`  = 13
 - Once installed you can call the following commands
   - Trace Level
     - `p.t(message: String)`
@@ -114,8 +127,8 @@ Scene
 func _ready() -> void:
     A.LogMessage._log_message("hello world", sf.LoggingLevel.Debug, true)
     # Long winded and requires a lot of set up. 
-    # Result displays in a green color:
-    # DEBUG	[2025/12/02/02:26:57]	[player: _ready]
+    # Result displays in a seafoam color (default):
+    # DEBUG	[2025/12/02/02:26:57]    [player: _ready]
     #        hello world
     #
     # vs.
@@ -125,15 +138,15 @@ func _ready() -> void:
     )
     print("DEBUG [%s] [%s] hello world" % [str(date), self.name])
     # Even longer-winded with special coloration. 
-    # Result displays in a white color (default):
+    # Result displays in a white-ish color:
     # DEBUG [2025/12/2/2_32_55] [player] hello world
     #
     # vs.
     #
     p.d("hello world")
     # Works without having to implement anything special.
-    # Result displays in a green color:
-    # DEBUG	[2025/12/02/02:26:57]	[player: _ready]
+    # Result displays in a seafoam color (default):
+    # DEBUG	[2025/12/02/02:26:57]    [player: _ready]
     #        hello world
     #
 ```
