@@ -15,7 +15,7 @@ Developed and built in 4.4.1.
   - `res://addons/` so it should look like `res://addons/CrispyLog`
 - Go to `Project -> Project Settings -> Plugins`
   - Enable the plugin by checking the `On` checkbox - it will look like below
-  -  [x] On | CrispyLog | x.x.x | Jeff Miller
+  -  [x] `On | CrispyLog | x.x.x | Jeff Miller`
 - Go to `General -> CrispyLog`
   - Open `Color Pairs` Dictionary
   - If you don't like a particular color, you can change it here.
@@ -26,23 +26,21 @@ Developed and built in 4.4.1.
   - [ ] Use Iso Time
 - You can change the `Default Log` to which ever classification you might like.
 - You can change the `Default File Log` to which ever classification you might like.
-  - Available Enums:
-    ```
-    - None         = 0
-    - Trace        = 1
-    - Verbose      = 2
-    - Debug        = 3
-    - System       = 4
-    - Info         = 5 (Defaults to this)
-    - Success      = 6
-    - Warning      = 7
-    - Error        = 8
-    - Critical     = 9
-    - Fatal        = 10
-    - Assert       = 11
-    - Network      = 12
-    - Performance  = 13
-    ```
+  - Available Enums (Godot will sometimes format enumerators as integers):
+    - 0 = None
+    - 1 = Trace
+    - 2 = Verbose
+    - 3 = Debug
+    - 4 = System
+    - 5 = Info (Defaults to this)
+    - 6 = Success
+    - 7 = Warning
+    - 8 = Error
+    - 9 = Critical
+    - 10 = Fatal
+    - 11 = Assert
+    - 12 = Network
+    - 13 = Performance
 - Once installed you can call the following commands
   - Trace Level
     - `p.t(message: String)`
