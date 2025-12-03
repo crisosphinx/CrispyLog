@@ -27,20 +27,22 @@ Developed and built in 4.4.1.
 - You can change the `Default Log` to which ever classification you might like.
 - You can change the `Default File Log` to which ever classification you might like.
   - Available Enums:
-    - `None`         = 0
-    - `Trace`        = 1
-    - `Verbose`      = 2
-    - `Debug`        = 3
-    - `System`       = 4
-    - `Info`         = 5 (Defaults to this)
-    - `Success`      = 6
-    - `Warning`      = 7
-    - `Error`        = 8
-    - `Critical`     = 9
-    - `Fatal`        = 10
-    - `Assert`       = 11
-    - `Network`      = 12
-    - `Performance`  = 13
+    ```
+    - None         = 0
+    - Trace        = 1
+    - Verbose      = 2
+    - Debug        = 3
+    - System       = 4
+    - Info         = 5 (Defaults to this)
+    - Success      = 6
+    - Warning      = 7
+    - Error        = 8
+    - Critical     = 9
+    - Fatal        = 10
+    - Assert       = 11
+    - Network      = 12
+    - Performance  = 13
+    ```
 - Once installed you can call the following commands
   - Trace Level
     - `p.t(message: String)`
