@@ -20,10 +20,10 @@ Developed and built in 4.4.1.
   - Open `Color Pairs` Dictionary
   - If you don't like a particular color, you can change it here.
 - There are various booleans to help manage log flow.
-  - [] Print the Stack
-  - [] Print to Console
-  - [] Write to Log
-  - [] Use Iso Time
+  - [ ] Print the Stack
+  - [ ] Print to Console
+  - [ ] Write to Log
+  - [ ] Use Iso Time
 - You can change the `Default Log` to which ever classification you might like.
 - You can change the `Default File Log` to which ever classification you might like.
   - Available Enums:
