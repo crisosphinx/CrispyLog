@@ -21,83 +21,121 @@ func _ready() -> void:
 
 ## Create a trace message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func trace(message: String) -> void:
-    _ms_log._trace(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func trace(message: String,
+           obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._trace(message, obj, file_name_only)
 
 ## Create a verbose message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func verbose(message: String) -> void:
-    _ms_log._verbose(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func verbose(message: String,
+             obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._verbose(message, obj, file_name_only)
 
 ## Create a debug message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func debug(message: String) -> void:
-    _ms_log._debug(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func debug(message: String,
+           obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._debug(message, obj, file_name_only)
     
 ## Create a system message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func system(message: String) -> void:
-    _ms_log._sys(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func system(message: String,
+            obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._sys(message, obj, file_name_only)
 
 ## Create an info message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func info(message: String) -> void:
-    _ms_log._info(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func info(message: String,
+          obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._info(message, obj, file_name_only)
     
 ## Create a success message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func success(message: String) -> void:
-    _ms_log._success(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func success(message: String,
+             obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._success(message, obj, file_name_only)
 
 ## Create a warning message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func warning(message: String) -> void:
-    _ms_log._warning(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func warning(message: String,
+             obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._warning(message, obj, file_name_only)
 
 ## Create an error message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func error(message: String) -> void:
-    _ms_log._error(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func error(message: String,
+           obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._error(message, obj, file_name_only)
 
 ## Create an error message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func critical(message: String) -> void:
-    _ms_log._critical(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func critical(message: String,
+              obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._critical(message, obj, file_name_only)
+
 ## Error out / halt the software with a fatal message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.
-func fatal(message: String) -> void:
-    _ms_log._fatal(message)
+func fatal(message: String,
+           obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._fatal(message, obj, file_name_only)
 
 ## Assert a message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
 ## [param assertion]: ([member bool]) [b][OPTIONAL][/b] If you add
 ## something here, it will only be used when you're using
-## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].
-func assrt(message: String, assertion: bool) -> void:
-    _ms_log._assert(message, assertion)
+## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func assrt(message: String, assertion: bool,
+           obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._assert(message, assertion, obj, file_name_only)
 
 ## Create an error message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func network(message: String) -> void:
-    _ms_log._network(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func network(message: String,
+             obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._network(message, obj, file_name_only)
 
 ## Create an error message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func performance(message: String) -> void:
-    _ms_log._performance(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func performance(message: String,
+                 obj: Object = null, file_name_only: bool = false) -> void:
+    _ms_log._performance(message, obj, file_name_only)
 
 ## Use this to temporarily clear the Godot Console. It prints 6 empty lines.
 func clear_log() -> void:
@@ -108,72 +146,102 @@ func clear_log() -> void:
 ## [b][Shorthand][/b][br]
 ## Create a trace message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func trc(message: String) -> void:
-    trace(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func trc(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    trace(message, obj, file_name_only)
 
 ## [b][Shorthand][/b][br]
 ## Create a verbose message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func vrb(message: String) -> void:
-    verbose(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func vrb(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    verbose(message, obj, file_name_only)
     
 ## [b][Shorthand][/b][br]
 ## Create a debug message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func dbg(message: String) -> void:
-    debug(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func dbg(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    debug(message, obj, file_name_only)
     
 ## [b][Shorthand][/b][br]
 ## Create an info message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func log(message: String) -> void:
-    info(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func log(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    info(message, obj, file_name_only)
 
 ## [b][Shorthand][/b][br]
 ## Create a system message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func sys(message: String) -> void:
-    system(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func sys(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    system(message, obj, file_name_only)
 
 ## [b][Shorthand][/b][br]
 ## Create a success message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func yes(message: String) -> void:
-    success(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func yes(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    success(message, obj, file_name_only)
 
 ## [b][Shorthand][/b][br]
 ## Create a warning message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func wrn(message: String) -> void:
-    warning(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func wrn(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    warning(message, obj, file_name_only)
 
 ## [b][Shorthand][/b][br]
 ## Create an error message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func err(message: String) -> void:
-    error(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func err(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    error(message, obj, file_name_only)
 
 ## [b][Shorthand][/b][br]
 ## Create a critical message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func crit(message: String) -> void:
-    critical(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func crit(message: String,
+          obj: Object = null, file_name_only: bool = false) -> void:
+    critical(message, obj, file_name_only)
 
 ## [b][Shorthand][/b][br]
 ## Error out / halt the software with a fatal message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func ftl(message: String) -> void:
-    fatal(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func ftl(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    fatal(message, obj, file_name_only)
 
 ## [b][Shorthand][/b][br]
 ## Assert a message.[br][br]
@@ -181,23 +249,32 @@ func ftl(message: String) -> void:
 ## [param message]: ([member String]) Takes in a message.[br]
 ## [param assertion]: ([member bool]) [b][OPTIONAL][/b] If you add
 ## something here, it will only be used when you're using
-## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].
-func asrt(message: String, assertion: bool) -> void:
-    assrt(message, assertion)
+## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func asrt(message: String, assertion: bool,
+          obj: Object = null, file_name_only: bool = false) -> void:
+    assrt(message, assertion, obj, file_name_only)
     
 ## [b][Shorthand][/b][br]
 ## Create a network message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func net(message: String) -> void:
-    network(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func net(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    network(message, obj, file_name_only)
 
 ## [b][Shorthand][/b][br]
 ## Create a performance message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func prf(message: String) -> void:
-    performance(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func prf(message: String,
+         obj: Object = null, file_name_only: bool = false) -> void:
+    performance(message, obj, file_name_only)
 
 ## [b][Shorthand][/b][br]
 ## Use this to temporarily clear the Godot Console. It prints 6 empty lines.
@@ -209,72 +286,102 @@ func clr() -> void:
 ## [b][Shorterhand][/b][br]
 ## Create a trace message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func t(message: String) -> void:
-    trace(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func t(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    trace(message, obj, file_name_only)
 
 ## [b][Shorterhand][/b][br]
 ## Create a verbose message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func v(message: String) -> void:
-    verbose(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func v(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    verbose(message, obj, file_name_only)
     
 ## [b][Shorterhand][/b][br]
 ## Create a debug message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func d(message: String) -> void:
-    debug(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func d(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    debug(message, obj, file_name_only)
     
 ## [b][Shorterhand][/b][br]
 ## Create an info message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func i(message: String) -> void:
-    info(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func i(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    info(message, obj, file_name_only)
 
 ## [b][Shorterhand][/b][br]
 ## Create a system message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func s(message: String) -> void:
-    system(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func s(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    system(message, obj, file_name_only)
 
 ## [b][Shorterhand][/b][br]
 ## Create a success message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func y(message: String) -> void:
-    success(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func y(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    success(message, obj, file_name_only)
 
 ## [b][Shorterhand][/b][br]
 ## Create a warning message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func w(message: String) -> void:
-    warning(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func w(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    warning(message, obj, file_name_only)
 
 ## [b][Shorterhand][/b][br]
 ## Create an error message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func e(message: String) -> void:
-    error(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func e(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    error(message, obj, file_name_only)
 
 ## [b][Shorterhand][/b][br]
 ## Create a critical message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func c(message: String) -> void:
-    critical(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func c(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    critical(message, obj, file_name_only)
 
 ## [b][Shorterhand][/b][br]
 ## Error out / halt the software with a fatal message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func f(message: String) -> void:
-    fatal(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func f(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    fatal(message, obj, file_name_only)
 
 ## [b][Shorterhand][/b][br]
 ## Assert a message.[br][br]
@@ -282,20 +389,29 @@ func f(message: String) -> void:
 ## [param message]: ([member String]) Takes in a message.[br]
 ## [param assertion]: ([member bool]) [b][OPTIONAL][/b] If you add
 ## something here, it will only be used when you're using
-## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].
-func a(message: String, assertion: bool) -> void:
-    assrt(message, assertion)
+## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func a(message: String, assertion: bool,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    assrt(message, assertion, obj, file_name_only)
 
 ## [b][Shorterhand][/b][br]
 ## Create a network message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func n(message: String) -> void:
-    network(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func n(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    network(message, obj, file_name_only)
 
 ## [b][Shorterhand][/b][br]
 ## Create a performance message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func p(message: String) -> void:
-    performance(message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Defaults to null - recommended "self".[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func p(message: String,
+       obj: Object = null, file_name_only: bool = false) -> void:
+    performance(message, obj, file_name_only)

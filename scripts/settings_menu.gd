@@ -57,71 +57,79 @@ const MSG_COLORS: Dictionary[String, Color] = {
 ## Creates the settings for this tool in:[br]
 ## [code]Project > Project Settings > General > CrispyLog[/code][br][br]
 static func create_settings() -> void:
+    var lls: String = ",".join(LoggingLevel.keys())
+    
     if not ProjectSettings.has_setting(color_pairs):
         ProjectSettings.set_setting(color_pairs, MSG_COLORS)
-        ProjectSettings.add_property_info({
-            "name"          : color_pairs,
-            "type"          : TYPE_DICTIONARY,
-            "hint"          : PROPERTY_HINT_NONE,
-            "usage"         : PROPERTY_USAGE_READ_ONLY,
-            "category"      : "Colors"
-        })
+
     if not ProjectSettings.has_setting(prnt_stack_):
         ProjectSettings.set_setting(prnt_stack_, false)
-        ProjectSettings.add_property_info({
-            "name"          : prnt_stack_,
-            "type"          : TYPE_BOOL,
-            "hint"          : PROPERTY_HINT_NONE,
-            "usage"         : PROPERTY_USAGE_DEFAULT,
-            "category"      : "Available"
-        })
+
     if not ProjectSettings.has_setting(enable_cnsl):
         ProjectSettings.set_setting(enable_cnsl, true)
-        ProjectSettings.add_property_info({
-            "name"          : enable_cnsl,
-            "type"          : TYPE_BOOL,
-            "hint"          : PROPERTY_HINT_NONE,
-            "usage"         : PROPERTY_USAGE_DEFAULT,
-            "category"      : "Available"
-        })
+
     if not ProjectSettings.has_setting(enable_logs):
         ProjectSettings.set_setting(enable_logs, true)
-        ProjectSettings.add_property_info({
-            "name"          : enable_logs,
-            "type"          : TYPE_BOOL,
-            "hint"          : PROPERTY_HINT_NONE,
-            "usage"         : PROPERTY_USAGE_DEFAULT,
-            "category"      : "Available"
-        })
+
     if not ProjectSettings.has_setting(enable_isot):
         ProjectSettings.set_setting(enable_isot, false)
-        ProjectSettings.add_property_info({
-            "name"          : enable_isot,
-            "type"          : TYPE_BOOL,
-            "hint"          : PROPERTY_HINT_NONE,
-            "usage"         : PROPERTY_USAGE_DEFAULT,
-            "category"      : "Available"
-        })
+
     if not ProjectSettings.has_setting(dft_cnsl_lg):
         ProjectSettings.set_setting(dft_cnsl_lg, LoggingLevel.INFO)
-        ProjectSettings.add_property_info({
-            "name"          : dft_cnsl_lg,
-            "type"          : TYPE_INT,
-            "hint"          : PROPERTY_HINT_ENUM,
-            "hint_string"   : ",".join(LoggingLevel.keys()),
-            "usage"         : PROPERTY_USAGE_DEFAULT,
-            "category"      : "Levels"
-        })
+
     if not ProjectSettings.has_setting(dft_file_lg):
         ProjectSettings.set_setting(dft_file_lg, LoggingLevel.DEBUG)
-        ProjectSettings.add_property_info({
-            "name"          : dft_file_lg,
-            "type"          : TYPE_INT,
-            "hint"          : PROPERTY_HINT_ENUM,
-            "hint_string"   : ",".join(LoggingLevel.keys()),
-            "usage"         : PROPERTY_USAGE_DEFAULT,
-            "category"      : "Levels"
-        })
+
+    # COLOR PAIRS
+    ProjectSettings.add_property_info({
+        "name"      : color_pairs,
+        "type"      : TYPE_DICTIONARY,
+        "usage"     : PROPERTY_USAGE_READ_ONLY,
+        "category"  : "Colors"
+    })
+
+    # BOOLEANS
+    ProjectSettings.add_property_info({
+        "name"      : prnt_stack_,
+        "type"      : TYPE_BOOL,
+        "category"  : "Available"
+    })
+
+    ProjectSettings.add_property_info({
+        "name"      : enable_cnsl,
+        "type"      : TYPE_BOOL,
+        "category"  : "Available"
+    })
+
+    ProjectSettings.add_property_info({
+        "name"      : enable_logs,
+        "type"      : TYPE_BOOL,
+        "category"  : "Available"
+    })
+
+    ProjectSettings.add_property_info({
+        "name"      : enable_isot,
+        "type"      : TYPE_BOOL,
+        "category"  : "Available"
+    })
+
+    # ENUM LEVELS
+    ProjectSettings.add_property_info({
+        "name"          : dft_cnsl_lg,
+        "type"          : TYPE_INT,
+        "hint"          : PROPERTY_HINT_ENUM,
+        "hint_string"   : lls,
+        "category"      : "Levels"
+    })
+
+    ProjectSettings.add_property_info({
+        "name"          : dft_file_lg,
+        "type"          : TYPE_INT,
+        "hint"          : PROPERTY_HINT_ENUM,
+        "hint_string"   : lls,
+        "category"      : "Levels"
+    })
+    
     ProjectSettings.save()
     
 ## Deletes the settings for this tool in:[br]
@@ -184,15 +192,24 @@ static func get_color(value: LoggingLevel) -> String:
 
 ## Returns a [member bool] as the value of whether we print stack.
 static func get_print_stack_enabled() -> bool:
-    return ProjectSettings.get_setting(prnt_stack_)
+    if ProjectSettings.has_setting(prnt_stack_):
+        return ProjectSettings.get_setting(prnt_stack_)
+    else:
+        return false
     
 ## Returns a [member bool] as the value of whether we write to the console.
 static func get_write_to_console_enabled() -> bool:
-    return ProjectSettings.get_setting(enable_cnsl)
+    if ProjectSettings.has_setting(enable_cnsl):
+        return ProjectSettings.get_setting(enable_cnsl) 
+    else:
+        return false
 
 ## Returns a [member bool] as the value of whether we write to logs.
 static func get_write_to_logs_enabled() -> bool:
-    return ProjectSettings.get_setting(enable_logs)
+    if ProjectSettings.has_setting(enable_logs):
+        return ProjectSettings.get_setting(enable_logs)
+    else:
+        return false
 
 ## Returns a [member bool] as the value of whether we use iso time.[br][br]
 ##

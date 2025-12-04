@@ -30,57 +30,57 @@
    - `Performance`
 - Once installed you can call the following commands
   - Trace Level
-    - `p.t(message: String)`
-    - `p.trc(message: String)`
-    - `p.trace(message: String)`
+    - `p.t(message: String, obj: Object, file_name_only: bool)`
+    - `p.trc(message: String, obj: Object, file_name_only: bool)`
+    - `p.trace(message: String, obj: Object, file_name_only: bool)`
   - Verbose Level
-    - `p.v(message: String)`
-    - `p.vrb(message: String)`
-    - `p.verbose(message: String)`
+    - `p.v(message: String, obj: Object, file_name_only: bool)`
+    - `p.vrb(message: String, obj: Object, file_name_only: bool)`
+    - `p.verbose(message: String, obj: Object, file_name_only: bool)`
   - Debug Level
-    - `p.d(message: String)`
-    - `p.dbg(message: String)`
-    - `p.debug(message: String)`
+    - `p.d(message: String, obj: Object, file_name_only: bool)`
+    - `p.dbg(message: String, obj: Object, file_name_only: bool)`
+    - `p.debug(message: String, obj: Object, file_name_only: bool)`
   - System Level
-    - `p.s(message: String)`
-    - `p.sys(message: String)`
-    - `p.system(message: String)`
+    - `p.s(message: String, obj: Object, file_name_only: bool)`
+    - `p.sys(message: String, obj: Object, file_name_only: bool)`
+    - `p.system(message: String, obj: Object, file_name_only: bool)`
   - Info Level
-    - `p.i(message: String)`
-    - `p.log(message: String)`
-    - `p.info(message: String)`
+    - `p.i(message: String, obj: Object, file_name_only: bool)`
+    - `p.log(message: String, obj: Object, file_name_only: bool)`
+    - `p.info(message: String, obj: Object, file_name_only: bool)`
   - Success Level
-    - `p.y(message: String)`
-    - `p.yes(message: String)`
-    - `p.success(message: String)`
+    - `p.y(message: String, obj: Object, file_name_only: bool)`
+    - `p.yes(message: String, obj: Object, file_name_only: bool)`
+    - `p.success(message: String, obj: Object, file_name_only: bool)`
   - Warning Level
-    - `p.w(message: String)`
-    - `p.wrn(message: String)`
-    - `p.warning(message: String)`
+    - `p.w(message: String, obj: Object, file_name_only: bool)`
+    - `p.wrn(message: String, obj: Object, file_name_only: bool)`
+    - `p.warning(message: String, obj: Object, file_name_only: bool)`
   - Error Level
-    - `p.e(message: String)`
-    - `p.err(message: String)`
-    - `p.error(message: String)`
+    - `p.e(message: String, obj: Object, file_name_only: bool)`
+    - `p.err(message: String, obj: Object, file_name_only: bool)`
+    - `p.error(message: String, obj: Object, file_name_only: bool)`
   - Critical Level
-    - `p.c(message: String)`
-    - `p.crt(message: String)`
-    - `p.critical(message: String)`
+    - `p.c(message: String, obj: Object, file_name_only: bool)`
+    - `p.crt(message: String, obj: Object, file_name_only: bool)`
+    - `p.critical(message: String, obj: Object, file_name_only: bool)`
   - Fatal Level
-    - `p.f(message: String)`
-    - `p.ftl(message: String)`
-    - `p.fatal(message: String)`
+    - `p.f(message: String, obj: Object, file_name_only: bool)`
+    - `p.ftl(message: String, obj: Object, file_name_only: bool)`
+    - `p.fatal(message: String, obj: Object, file_name_only: bool)`
   - Assert Level
-    - `p.a(message: String, assertion: bool)`
-    - `p.asrt(message: String, assertion: bool)`
-    - `p.assrt(message: String, assertion: bool)`
+    - `p.a(message: String, assertion: bool, obj: Object, file_name_only: bool)`
+    - `p.asrt(message: String, assertion: bool, obj: Object, file_name_only: bool)`
+    - `p.assrt(message: String, assertion: bool, obj: Object, file_name_only: bool)`
   - Network Level
-    - `p.n(message: String)`
-    - `p.net(message: String)`
-    - `p.network(message: String)`
+    - `p.n(message: String, obj: Object, file_name_only: bool)`
+    - `p.net(message: String, obj: Object, file_name_only: bool)`
+    - `p.network(message: String, obj: Object, file_name_only: bool)`
   - Performance Level
-    - `p.p(message: String)`
-    - `p.prf(message: String)`
-    - `p.performance(message: String)`
+    - `p.p(message: String, obj: Object, file_name_only: bool)`
+    - `p.prf(message: String, obj: Object, file_name_only: bool)`
+    - `p.performance(message: String, obj: Object, file_name_only: bool)`
 
 ## How the plugin works
 
@@ -134,6 +134,12 @@ func _ready() -> void:
     # Works without having to implement anything special.
     # Result displays in a green color:
     # DEBUG	[2025/12/02/02:26:57]	[player: _ready]
+    #        hello world
+    #
+    p.d("hello world", self)
+    # Works without having to implement anything special.
+    # Result displays in a green color:
+    # DEBUG	[2025/12/02/02:26:57]	[Player1 - player: _ready]
     #        hello world
     #
 ```
