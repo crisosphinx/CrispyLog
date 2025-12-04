@@ -3,6 +3,19 @@ A Godot 4.x+ based logging tool that works for games and applications, alike. To
 
 Developed and built in 4.4.1.
 
+## On Versioning of this plugin
+
+### #.#.#-a-#
+
+---
+Major.Minor.Bug-alpha_status-Documentation
+
+*Major* is a significant revision change.
+*Minor* is a minor revision change / func update / etc.
+*Bug* is a bug fix.
+*alpha_status* is for alpha and beta builds. Will not be added if not either.
+*Documentation* is a documentation update.
+
 ## Trello Document / Roadmap
 
 [CrispyLog Trello](https://trello.com/b/YDEvNpxc/crispylog)
@@ -104,11 +117,21 @@ extends Node
 
 func _ready() -> void:
     p.i("Hello world!", self)
-    # This will print out something like the following:
-    # INFO  [2025/12/04_00:55:10]   [NodeInScene - do_stuff: _ready]
+    
+    # This will print out, in the console, something like the following:
+    # INFO  [2025/12/04_00:55:10]   [NodeInScene | do_stuff: _ready]
     #       Hello world!
 ```
 
+
+## Logs
+
+Log files save in Documents directory, regardless of system.
+- Windows / Posix:
+  - `C:\Users\[UserName]\Documents\.logs\[appname]\[year]\[month]\[day]\[hour_minute_second].log`
+- Mac / Linux / Unix:
+  - `~/Documents/.logs/[appname]/[year]/[month]/[day]/[hour_minute_second].log`
+  - 
 ## How the plugin works
 
 For those who are more tech-saavy...
@@ -166,15 +189,7 @@ func _ready() -> void:
     p.d("hello world", self)
     # Works without having to implement anything special.
     # Result displays in a green color:
-    # DEBUG	[2025/12/02/02:26:57]	[Player1 - player: _ready]
+    # DEBUG	[2025/12/02/02:26:57]	[Player1 | player: _ready]
     #        hello world
     #
 ```
-
-## Logs
-
-Log files save in Documents directory, regardless of system.
-- Windows / Posix:
-  - `C:\Users\[UserName]\Documents\.logs\[appname]\[year]\[month]\[day]\[hour_minute_second].log`
-- Mac / Linux / Unix:
-  - `~/Documents/.logs/[appname]/[year]/[month]/[day]/[hour_minute_second].log`

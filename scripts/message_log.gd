@@ -165,7 +165,7 @@ class LogBlueprint:
                 return src
             else:
                 if obj:
-                    return "%s - %s: %s" % [obj.name, src, fnc]
+                    return "%s | %s: %s" % [obj.name, src, fnc]
                 else:
                     return "%s: %s" % [src, fnc]
         return "Unknown"
@@ -175,8 +175,9 @@ class LogBlueprint:
     ## [param message]: ([member String]) Takes in a message.[br]
     ## [param log_level]: ([member LoggingLevel] or [member int]) Specifies the
     ## level of log.[br]
-    ## [param file_only]: ([member bool]) Default to not using only file name.[br]
-    ## [param obj]: ([member Object]) Recommended to use "self".
+    ## [param file_only]: ([member bool]) Default to not using only file
+    ## name.[br]
+    ## [param obj]: ([member Object]) Recommended to use [member self].
     func _get_formatted_message(message: String,
                                 log_level: sf.LoggingLevel,
                                 file_name_only: bool = false,
@@ -317,7 +318,7 @@ class LogBlueprint:
     ## [param assertion]: ([member bool]) [b][OPTIONAL][/b] If you add
     ## something here, it will only be used when you're using
     ## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].[br]
-    ## [param obj]: ([member Object]) Recommended to use "self".[br]
+    ## [param obj]: ([member Object]) Recommended to use [member self].[br]
     ## [param file_name_only]: ([member bool]) Use only the file name.
     func log_message(message: String,
                      log_level: int = sf.LoggingLevel.INFO,
@@ -365,7 +366,7 @@ func _init() -> void:
 ## [param message]: ([member String]) Takes in a message.[br]
 ## [param level]: ([member LoggingLevel] or [member int]) Specifies log
 ## level.[br]\
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.[br]
 ## [param assertion]: ([member bool]) [b][OPTIONAL][/b] If you add
 ## something here, it will only be used when you're using
@@ -400,7 +401,7 @@ static func _clear_console() -> void:
 ## Create a trace message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _trace(message: String, obj: Object = null,
             file_name_only: bool = false) -> void:
@@ -417,7 +418,7 @@ func _trace(message: String, obj: Object = null,
 ## Create a verbose message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _verbose(message: String, obj: Object = null,
               file_name_only: bool = false) -> void:
@@ -434,7 +435,7 @@ func _verbose(message: String, obj: Object = null,
 ## Create a debug message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _debug(message: String, obj: Object = null,
             file_name_only: bool = false) -> void:
@@ -451,7 +452,7 @@ func _debug(message: String, obj: Object = null,
 ## Create an info message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _info(message: String, obj: Object = null,
            file_name_only: bool = false) -> void:
@@ -468,7 +469,7 @@ func _info(message: String, obj: Object = null,
 ## Create a system message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _sys(message: String, obj: Object = null,
           file_name_only: bool = false) -> void:
@@ -485,7 +486,7 @@ func _sys(message: String, obj: Object = null,
 ## Create a success message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _success(message: String, obj: Object = null,
               file_name_only: bool = false) -> void:
@@ -502,7 +503,7 @@ func _success(message: String, obj: Object = null,
 ## Create a warning message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _warning(message: String, obj: Object = null,
               file_name_only: bool = false) -> void:
@@ -519,7 +520,7 @@ func _warning(message: String, obj: Object = null,
 ## Create an error message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _error(message: String, obj: Object = null,
             file_name_only: bool = false) -> void:
@@ -536,7 +537,7 @@ func _error(message: String, obj: Object = null,
 ## Create an critical message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _critical(message: String, obj: Object = null,
                file_name_only: bool = false) -> void:
@@ -553,7 +554,7 @@ func _critical(message: String, obj: Object = null,
 ## Error out / halt the software with a fatal message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _fatal(message: String, obj: Object = null,
             file_name_only: bool = false) -> void:
@@ -575,7 +576,7 @@ func _fatal(message: String, obj: Object = null,
 ## Example:[br]
 ## var cond: bool = (1 == 1)[br]
 ## _assert('msg', cond)[br][br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _assert(message: String, assertion: bool, obj: Object = null,
              file_name_only: bool = false) -> void:
@@ -592,7 +593,7 @@ func _assert(message: String, assertion: bool, obj: Object = null,
 ## Create a network feedback message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _network(message: String, obj: Object = null,
               file_name_only: bool = false) -> void:
@@ -609,7 +610,7 @@ func _network(message: String, obj: Object = null,
 ## Create a performance message.[br][br]
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
-## [param obj]: ([member Object]) Recommended to use "self".[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
 ## [param file_name_only]: ([member bool]) Use only the file name.
 func _performance(message: String, obj: Object = null,
                   file_name_only: bool = false) -> void:
