@@ -95,6 +95,20 @@ Developed and built in 4.4.1.
     - `p.prf(message: String, obj: Object, file_name_only: bool)`
     - `p.performance(message: String, obj: Object, file_name_only: bool)`
 
+### Example
+
+```gdscript
+## Script name is "do_stuff.gd"
+
+extends Node
+
+func _ready() -> void:
+    p.i("Hello world!", self)
+    # This will print out something like the following:
+    # INFO  [2025/12/04_00:55:10]   [NodeInScene - do_stuff: _ready]
+    #       Hello world!
+```
+
 ## How the plugin works
 
 For those who are more tech-saavy...
