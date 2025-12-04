@@ -53,7 +53,10 @@ class LogBlueprint:
     ## of being invoked on the class object.
     var _owner: Node = null
 
-    ## Returns the log format as a [member String].
+    ## Returns the log format as a [member String].[br]
+    ## Note: This returns ONLY the format. If you want to change it, you must
+    ## change the value in code. Please do not modify unless you know what you
+    ## are doing.
     func log_format_getter() -> String:
         return _LOG_FORMAT
 
@@ -150,7 +153,8 @@ class LogBlueprint:
     ## the file name as a [member String]. Otherwise, we will return the
     ## file name and [member func]tion name instead.[br][br]
     ## Or return "Unknown" if it fails.
-    func _get_caller_function_name(file_name_only: bool = false) -> String:
+    func _get_caller_function_name(file_name_only: bool = false,
+                                   obj: Object= null) -> String:
         var stack: Array = get_stack()
         if stack.size() >= 2:
             var caller_data: Dictionary = stack[stack.size()-1]
@@ -160,21 +164,28 @@ class LogBlueprint:
             if file_name_only and src:
                 return src
             else:
-                return "%s: %s" % [src, fnc]
+                if obj:
+                    return "%s | %s: %s" % [obj.name, src, fnc]
+                else:
+                    return "%s: %s" % [src, fnc]
         return "Unknown"
 
     ## Get the message format.[br][br]
     ##
     ## [param message]: ([member String]) Takes in a message.[br]
     ## [param log_level]: ([member LoggingLevel] or [member int]) Specifies the
-    ## level of log.
-    func _get_formatted_message(message: String, 
+    ## level of log.[br]
+    ## [param file_only]: ([member bool]) Default to not using only file
+    ## name.[br]
+    ## [param obj]: ([member Object]) Recommended to use [member self].
+    func _get_formatted_message(message: String,
                                 log_level: sf.LoggingLevel,
-                                file_name_only: bool = false) -> String:
-        var msg: String = _LOG_FORMAT.format(
+                                file_name_only: bool = false,
+                                obj: Object = null) -> String:
+        var msg: String = log_format_getter().format(
         {
             "message": message,
-            "location": _get_caller_function_name(file_name_only),
+            "location": _get_caller_function_name(file_name_only, obj),
             "time": get_datetime(),
             "level": sf.LoggingLevel.keys()[log_level].rpad(5, " ")
         })
@@ -306,11 +317,16 @@ class LogBlueprint:
     ## the most maximum level of log to print to screen.[br]
     ## [param assertion]: ([member bool]) [b][OPTIONAL][/b] If you add
     ## something here, it will only be used when you're using
-    ## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].
+    ## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].[br]
+    ## [param obj]: ([member Object]) Recommended to use [member self].[br]
+    ## [param file_name_only]: ([member bool]) Use only the file name.
     func log_message(message: String,
                      log_level: int = sf.LoggingLevel.INFO,
-                     assertion: bool = true) -> void:
-        var msg: String = _get_formatted_message(message, log_level)
+                     assertion: bool = true,
+                     file_name_only: bool = false,
+                     obj: Object = null) -> void:
+        var msg: String = _get_formatted_message(message, log_level,
+                                                 file_name_only, obj)
         if file_log_level_getter() <= log_level:
             if (OS.get_main_thread_id() != OS.get_thread_caller_id() &&
                 log_level == sf.LoggingLevel.DEBUG):
@@ -349,16 +365,20 @@ func _init() -> void:
 ##
 ## [param message]: ([member String]) Takes in a message.[br]
 ## [param level]: ([member LoggingLevel] or [member int]) Specifies log
-## level.[br]
+## level.[br]\
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.[br]
 ## [param assertion]: ([member bool]) [b][OPTIONAL][/b] If you add
 ## something here, it will only be used when you're using
 ## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].
 static func _log_message(message: String,
                          level: sf.LoggingLevel = sf.LoggingLevel.INFO,
+                         obj: Object = null,
+                         file_name_only: bool = false,
                          assertion: bool = true) -> void:
     if !log_blueprint:
         return
-    log_blueprint.log_message(message, level, assertion)
+    log_blueprint.log_message(message, level, assertion, file_name_only, obj)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -380,9 +400,13 @@ static func _clear_console() -> void:
 ##
 ## Create a trace message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _trace(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.TRACE)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _trace(message: String, obj: Object = null,
+            file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.TRACE, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -393,9 +417,13 @@ func _trace(message: String) -> void:
 ##
 ## Create a verbose message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _verbose(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.VERBOSE)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _verbose(message: String, obj: Object = null,
+              file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.VERBOSE, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -406,9 +434,13 @@ func _verbose(message: String) -> void:
 ##
 ## Create a debug message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _debug(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.DEBUG)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _debug(message: String, obj: Object = null,
+            file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.DEBUG, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -419,9 +451,13 @@ func _debug(message: String) -> void:
 ##
 ## Create an info message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _info(message: String) -> void:
-    call_thread_safe("_log_message", message)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _info(message: String, obj: Object = null,
+           file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.INFO, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -432,9 +468,13 @@ func _info(message: String) -> void:
 ##
 ## Create a system message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _sys(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.SYSTEM)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _sys(message: String, obj: Object = null,
+          file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.SYSTEM, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -445,9 +485,13 @@ func _sys(message: String) -> void:
 ##
 ## Create a success message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _success(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.SUCCESS)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _success(message: String, obj: Object = null,
+              file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.SUCCESS, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -458,9 +502,13 @@ func _success(message: String) -> void:
 ##
 ## Create a warning message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _warning(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.WARNING)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _warning(message: String, obj: Object = null,
+              file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.WARNING, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -471,9 +519,13 @@ func _warning(message: String) -> void:
 ##
 ## Create an error message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _error(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.ERROR)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _error(message: String, obj: Object = null,
+            file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.ERROR, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -484,9 +536,13 @@ func _error(message: String) -> void:
 ##
 ## Create an critical message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _critical(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.CRITICAL)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _critical(message: String, obj: Object = null,
+               file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.CRITICAL, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -497,9 +553,13 @@ func _critical(message: String) -> void:
 ##
 ## Error out / halt the software with a fatal message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _fatal(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.FATAL)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _fatal(message: String, obj: Object = null,
+            file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.FATAL, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -510,10 +570,18 @@ func _fatal(message: String) -> void:
 ##
 ## Assert with a message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-## [param assertion]: ([member bool]) [
-func _assert(message: String, assertion: bool) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.ASSERT, assertion)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param assertion]: ([member bool]) Add your conditional here.[br][br]
+##
+## Example:[br]
+## var cond: bool = (1 == 1)[br]
+## _assert('msg', cond)[br][br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _assert(message: String, assertion: bool, obj: Object = null,
+             file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.ASSERT, obj, file_name_only, assertion)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -524,9 +592,13 @@ func _assert(message: String, assertion: bool) -> void:
 ##
 ## Create a network feedback message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _network(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.NETWORK)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _network(message: String, obj: Object = null,
+              file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.NETWORK, obj, file_name_only)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
 ##
@@ -537,6 +609,10 @@ func _network(message: String) -> void:
 ##
 ## Create a performance message.[br][br]
 ##
-## [param message]: ([member String]) Takes in a message.
-func _performance(message: String) -> void:
-    call_thread_safe("_log_message", message, sf.LoggingLevel.PERFORMANCE)
+## [param message]: ([member String]) Takes in a message.[br]
+## [param obj]: ([member Object]) Recommended to use [member self].[br]
+## [param file_name_only]: ([member bool]) Use only the file name.
+func _performance(message: String, obj: Object = null,
+                  file_name_only: bool = false) -> void:
+    call_thread_safe("_log_message", message,
+                     sf.LoggingLevel.PERFORMANCE, obj, file_name_only)
