@@ -56,57 +56,57 @@ Major.Minor.Bug-alpha_status-Documentation
     - 13 = Performance
 - Once installed you can call the following commands
   - Trace Level
-    - `p.t(message: String, obj: Object, file_name_only: bool)`
-    - `p.trc(message: String, obj: Object, file_name_only: bool)`
-    - `p.trace(message: String, obj: Object, file_name_only: bool)`
+    - `p.t(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.trc(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.trace(message: Variant, obj: Object, file_name_only: bool)`
   - Verbose Level
-    - `p.v(message: String, obj: Object, file_name_only: bool)`
-    - `p.vrb(message: String, obj: Object, file_name_only: bool)`
-    - `p.verbose(message: String, obj: Object, file_name_only: bool)`
+    - `p.v(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.vrb(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.verbose(message: Variant, obj: Object, file_name_only: bool)`
   - Debug Level
-    - `p.d(message: String, obj: Object, file_name_only: bool)`
-    - `p.dbg(message: String, obj: Object, file_name_only: bool)`
-    - `p.debug(message: String, obj: Object, file_name_only: bool)`
+    - `p.d(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.dbg(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.debug(message: Variant, obj: Object, file_name_only: bool)`
   - System Level
-    - `p.s(message: String, obj: Object, file_name_only: bool)`
-    - `p.sys(message: String, obj: Object, file_name_only: bool)`
-    - `p.system(message: String, obj: Object, file_name_only: bool)`
+    - `p.s(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.sys(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.system(message: Variant, obj: Object, file_name_only: bool)`
   - Info Level
-    - `p.i(message: String, obj: Object, file_name_only: bool)`
-    - `p.log(message: String, obj: Object, file_name_only: bool)`
-    - `p.info(message: String, obj: Object, file_name_only: bool)`
+    - `p.i(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.log(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.info(message: Variant, obj: Object, file_name_only: bool)`
   - Success Level
-    - `p.y(message: String, obj: Object, file_name_only: bool)`
-    - `p.yes(message: String, obj: Object, file_name_only: bool)`
-    - `p.success(message: String, obj: Object, file_name_only: bool)`
+    - `p.y(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.yes(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.success(message: Variant, obj: Object, file_name_only: bool)`
   - Warning Level
-    - `p.w(message: String, obj: Object, file_name_only: bool)`
-    - `p.wrn(message: String, obj: Object, file_name_only: bool)`
-    - `p.warning(message: String, obj: Object, file_name_only: bool)`
+    - `p.w(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.wrn(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.warning(message: Variant, obj: Object, file_name_only: bool)`
   - Error Level
-    - `p.e(message: String, obj: Object, file_name_only: bool)`
-    - `p.err(message: String, obj: Object, file_name_only: bool)`
-    - `p.error(message: String, obj: Object, file_name_only: bool)`
+    - `p.e(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.err(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.error(message: Variant, obj: Object, file_name_only: bool)`
   - Critical Level
-    - `p.c(message: String, obj: Object, file_name_only: bool)`
-    - `p.crt(message: String, obj: Object, file_name_only: bool)`
-    - `p.critical(message: String, obj: Object, file_name_only: bool)`
+    - `p.c(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.crt(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.critical(message: Variant, obj: Object, file_name_only: bool)`
   - Fatal Level
-    - `p.f(message: String, obj: Object, file_name_only: bool)`
-    - `p.ftl(message: String, obj: Object, file_name_only: bool)`
-    - `p.fatal(message: String, obj: Object, file_name_only: bool)`
+    - `p.f(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.ftl(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.fatal(message: Variant, obj: Object, file_name_only: bool)`
   - Assert Level
-    - `p.a(message: String, assertion: bool, obj: Object, file_name_only: bool)`
-    - `p.asrt(message: String, assertion: bool, obj: Object, file_name_only: bool)`
-    - `p.assrt(message: String, assertion: bool, obj: Object, file_name_only: bool)`
+    - `p.a(message: Variant, assertion: bool, obj: Object, file_name_only: bool)`
+    - `p.asrt(message: Variant, assertion: bool, obj: Object, file_name_only: bool)`
+    - `p.assrt(message: Variant, assertion: bool, obj: Object, file_name_only: bool)`
   - Network Level
-    - `p.n(message: String, obj: Object, file_name_only: bool)`
-    - `p.net(message: String, obj: Object, file_name_only: bool)`
-    - `p.network(message: String, obj: Object, file_name_only: bool)`
+    - `p.n(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.net(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.network(message: Variant, obj: Object, file_name_only: bool)`
   - Performance Level
-    - `p.p(message: String, obj: Object, file_name_only: bool)`
-    - `p.prf(message: String, obj: Object, file_name_only: bool)`
-    - `p.performance(message: String, obj: Object, file_name_only: bool)`
+    - `p.p(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.prf(message: Variant, obj: Object, file_name_only: bool)`
+    - `p.performance(message: Variant, obj: Object, file_name_only: bool)`
 
 ### Example
 
@@ -120,7 +120,17 @@ func _ready() -> void:
     
     # This will print out, in the console, something like the following:
     # INFO  [2025/12/04_00:55:10]   [NodeInScene | do_stuff: _ready]
-    #       Hello world!
+    #       [String]            | Hello world!
+
+    p.i(1, self)
+    # This will print out, in the console, something like the following:
+    # INFO  [2025/12/04_00:55:10]   [NodeInScene | do_stuff: _ready]
+    #       [int]               | 1
+
+    p.i(get_tree().get_first_node_in_group("player"), self)
+    # This will print out, in the console, something like the following:
+    # INFO  [2025/12/04_00:55:10]   [NodeInScene | do_stuff: _ready]
+    #       [Object]            | Player:<Node3D#199928392>
 ```
 
 
@@ -144,7 +154,7 @@ The plugin installs two globals:
 
 Example:
 ```gdscript
-static func _log_message(message: String,
+static func _log_message(message: Variant,
                          level: sf.LoggingLevel = sf.LoggingLevel.INFO,
                          assertion: bool = true) -> void:
     # ...
@@ -166,7 +176,7 @@ func _ready() -> void:
     # Long winded and requires a lot of set up. 
     # Result displays in a seafoam color (default):
     # DEBUG	[2025/12/02/02:26:57]    [player: _ready]
-    #        hello world
+    #       [String]            | hello world
     #
     # vs.
     #
@@ -184,12 +194,12 @@ func _ready() -> void:
     # Works without having to implement anything special.
     # Result displays in a seafoam color (default):
     # DEBUG	[2025/12/02/02:26:57]    [player: _ready]
-    #        hello world
+    #       [String]            | hello world
     #
     p.d("hello world", self)
     # Works without having to implement anything special.
     # Result displays in a green color:
     # DEBUG	[2025/12/02/02:26:57]	[Player1 | player: _ready]
-    #        hello world
+    #       [String]            | hello world
     #
 ```
