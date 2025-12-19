@@ -401,7 +401,7 @@ static func _log_message(message: Variant,
                          assertion: bool = true) -> void:
     if !log_blueprint:
         return
-        var msg: String = _format_in_msg(message)
+    var msg: String = _format_in_msg(message)
     log_blueprint.log_message(msg, level, assertion, file_name_only, obj)
 
 ## [b]!!DO NOT USE THIS DIRECTLY!![/b][br][br]
