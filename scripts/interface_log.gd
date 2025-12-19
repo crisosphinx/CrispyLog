@@ -1,455 +1,148 @@
 # Copyright 2026 @ Jeff3DAnimation
-@icon('../icons/logger.svg')
-@tool
+tool
 extends Node
 
-## [b]Message Logger[/b][br][br]
-##
-## This class is what we call to get the hidden messaging functions.[br]
-## Do not call [member MessageLog] directly if you plan on using the built-in
-## shorthand functionality as prescribed by this entire plug-in.
-static var _ms_log: MessageLog
+# Message Logger
+#
+# This class is what we call to get the hidden messaging functions.
+# Do not call MessageLog directly if you plan on using the built-in
+# shorthand functionality.
+var _ms_log = null
 
-## On the start of the game / experience, populate the scene appropriately.
-func _ready() -> void:
-    var ms_log: Node = Node.new()  ## Create a node to append a script to.
-    var scrpt: Script = preload("res://addons/CrispyLog/scripts/message_log.gd")
-    self.add_child(ms_log)
-    ms_log.set_script(scrpt)
-    _ms_log = ms_log  # Hack so we can eval the class here
-    ms_log = null
+# On the start of the game / experience, populate the scene appropriately.
+func _ready():
+	var ms_log = Node.new()  # Create a node to append a script to
+	var scrpt = load("res://addons/CrispyLog/scripts/message_log.gd")
+	add_child(ms_log)
+	ms_log.set_script(scrpt)
+	_ms_log = ms_log  # Hack so we can eval the class here
+	ms_log = null
 
-## Create a trace message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func trace(message: Variant,  obj: Object = null,
-           file_name_only: bool = false) -> void:
-    _ms_log._trace(message, obj, file_name_only)
+# ===================== Full names ===================== #
 
-## Create a verbose message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func verbose(message: Variant, obj: Object = null,
-             file_name_only: bool = false) -> void:
-    _ms_log._verbose(message, obj, file_name_only)
+func trace(message, obj := null, file_name_only := false):
+	_ms_log._trace(message, obj, file_name_only)
 
-## Create a debug message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func debug(message: Variant,  obj: Object = null,
-           file_name_only: bool = false) -> void:
-    _ms_log._debug(message, obj, file_name_only)
+func verbose(message, obj := null, file_name_only := false):
+	_ms_log._verbose(message, obj, file_name_only)
 
-## Create a system message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func system(message: Variant, obj: Object = null,
-            file_name_only: bool = false) -> void:
-    _ms_log._sys(message, obj, file_name_only)
+func debug(message, obj := null, file_name_only := false):
+	_ms_log._debug(message, obj, file_name_only)
 
-## Create an info message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func info(message: Variant, obj: Object = null,
-          file_name_only: bool = false) -> void:
-    _ms_log._info(message, obj, file_name_only)
+func system(message, obj := null, file_name_only := false):
+	_ms_log._sys(message, obj, file_name_only)
 
-## Create a success message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func success(message: Variant, obj: Object = null,
-             file_name_only: bool = false) -> void:
-    _ms_log._success(message, obj, file_name_only)
+func info(message, obj := null, file_name_only := false):
+	_ms_log._info(message, obj, file_name_only)
 
-## Create a warning message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func warning(message: Variant, obj: Object = null,
-             file_name_only: bool = false) -> void:
-    _ms_log._warning(message, obj, file_name_only)
+func success(message, obj := null, file_name_only := false):
+	_ms_log._success(message, obj, file_name_only)
 
-## Create an error message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func error(message: Variant,  obj: Object = null,
-           file_name_only: bool = false) -> void:
-    _ms_log._error(message, obj, file_name_only)
+func warning(message, obj := null, file_name_only := false):
+	_ms_log._warning(message, obj, file_name_only)
 
-## Create an error message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func critical(message: Variant,  obj: Object = null,
-              file_name_only: bool = false) -> void:
-    _ms_log._critical(message, obj, file_name_only)
+func error(message, obj := null, file_name_only := false):
+	_ms_log._error(message, obj, file_name_only)
 
-## Error out / halt the software with a fatal message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.
-func fatal(message: Variant,  obj: Object = null,
-           file_name_only: bool = false) -> void:
-    _ms_log._fatal(message, obj, file_name_only)
+func critical(message, obj := null, file_name_only := false):
+	_ms_log._critical(message, obj, file_name_only)
 
-## Assert a message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param assertion]: ([member bool]) [b][OPTIONAL][/b] If you add
-## something here, it will only be used when you're using
-## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func assrt(message: Variant, assertion: bool,  obj: Object = null,
-           file_name_only: bool = false) -> void:
-    _ms_log._assert(message, assertion, obj, file_name_only)
+func fatal(message, obj := null, file_name_only := false):
+	_ms_log._fatal(message, obj, file_name_only)
 
-## Create an error message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func network(message: Variant, obj: Object = null,
-             file_name_only: bool = false) -> void:
-    _ms_log._network(message, obj, file_name_only)
+func assrt(message, assertion, obj := null, file_name_only := false):
+	_ms_log._assert(message, assertion, obj, file_name_only)
 
-## Create an error message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func performance(message: Variant,  obj: Object = null,
-                 file_name_only: bool = false) -> void:
-    _ms_log._performance(message, obj, file_name_only)
+func network(message, obj := null, file_name_only := false):
+	_ms_log._network(message, obj, file_name_only)
 
-## Use this to temporarily clear the Godot Console. It prints 6 empty lines.
-func clear_log() -> void:
-    _ms_log._clear_console()
+func performance(message, obj := null, file_name_only := false):
+	_ms_log._performance(message, obj, file_name_only)
 
-# ===================== Shorthand ============================== #
+func clear_log():
+	_ms_log._clear_console()
 
-## [b][Shorthand][/b][br]
-## Create a trace message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func trc(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    trace(message, obj, file_name_only)
+# ===================== Shorthand ===================== #
 
-## [b][Shorthand][/b][br]
-## Create a verbose message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func vrb(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    verbose(message, obj, file_name_only)
+func trc(message, obj := null, file_name_only := false):
+	trace(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Create a debug message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func dbg(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    debug(message, obj, file_name_only)
+func vrb(message, obj := null, file_name_only := false):
+	verbose(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Create an info message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func log(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    info(message, obj, file_name_only)
+func dbg(message, obj := null, file_name_only := false):
+	debug(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Create a system message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func sys(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    system(message, obj, file_name_only)
+func log(message, obj := null, file_name_only := false):
+	info(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Create a success message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func yes(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    success(message, obj, file_name_only)
+func sys(message, obj := null, file_name_only := false):
+	system(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Create a warning message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func wrn(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    warning(message, obj, file_name_only)
+func yes(message, obj := null, file_name_only := false):
+	success(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Create an error message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func err(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    error(message, obj, file_name_only)
+func wrn(message, obj := null, file_name_only := false):
+	warning(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Create a critical message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func crit(message: Variant, obj: Object = null,
-          file_name_only: bool = false) -> void:
-    critical(message, obj, file_name_only)
+func err(message, obj := null, file_name_only := false):
+	error(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Error out / halt the software with a fatal message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func ftl(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    fatal(message, obj, file_name_only)
+func crit(message, obj := null, file_name_only := false):
+	critical(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Assert a message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param assertion]: ([member bool]) [b][OPTIONAL][/b] If you add
-## something here, it will only be used when you're using
-## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func asrt(message: Variant, assertion: bool, obj: Object = null,
-          file_name_only: bool = false) -> void:
-    assrt(message, assertion, obj, file_name_only)
+func ftl(message, obj := null, file_name_only := false):
+	fatal(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Create a network message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func net(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    network(message, obj, file_name_only)
+func asrt(message, assertion, obj := null, file_name_only := false):
+	assrt(message, assertion, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Create a performance message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func prf(message: Variant, obj: Object = null,
-         file_name_only: bool = false) -> void:
-    performance(message, obj, file_name_only)
+func net(message, obj := null, file_name_only := false):
+	network(message, obj, file_name_only)
 
-## [b][Shorthand][/b][br]
-## Use this to temporarily clear the Godot Console. It prints 6 empty lines.
-func clr() -> void:
-    clear_log()
+func prf(message, obj := null, file_name_only := false):
+	performance(message, obj, file_name_only)
 
-# ===================== Shorterhand ============================ #
+func clr():
+	clear_log()
 
-## [b][Shorterhand][/b][br]
-## Create a trace message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func t(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    trace(message, obj, file_name_only)
+# ===================== Shorterhand ===================== #
 
-## [b][Shorterhand][/b][br]
-## Create a verbose message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func v(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    verbose(message, obj, file_name_only)
+func t(message, obj := null, file_name_only := false):
+	trace(message, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Create a debug message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func d(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    debug(message, obj, file_name_only)
+func v(message, obj := null, file_name_only := false):
+	verbose(message, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Create an info message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func i(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    info(message, obj, file_name_only)
+func d(message, obj := null, file_name_only := false):
+	debug(message, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Create a system message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func s(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    system(message, obj, file_name_only)
+func i(message, obj := null, file_name_only := false):
+	info(message, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Create a success message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func y(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    success(message, obj, file_name_only)
+func s(message, obj := null, file_name_only := false):
+	system(message, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Create a warning message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func w(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    warning(message, obj, file_name_only)
+func y(message, obj := null, file_name_only := false):
+	success(message, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Create an error message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func e(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    error(message, obj, file_name_only)
+func w(message, obj := null, file_name_only := false):
+	warning(message, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Create a critical message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func c(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    critical(message, obj, file_name_only)
+func e(message, obj := null, file_name_only := false):
+	error(message, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Error out / halt the software with a fatal message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func f(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    fatal(message, obj, file_name_only)
+func c(message, obj := null, file_name_only := false):
+	critical(message, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Assert a message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param assertion]: ([member bool]) [b][OPTIONAL][/b] If you add
-## something here, it will only be used when you're using
-## [code]p.assrt[/code], [code]p.asrt[/code] or [code]p.a[/code].[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func a(message: Variant, assertion: bool, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    assrt(message, assertion, obj, file_name_only)
+func f(message, obj := null, file_name_only := false):
+	fatal(message, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Create a network message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func n(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    network(message, obj, file_name_only)
+func a(message, assertion, obj := null, file_name_only := false):
+	assrt(message, assertion, obj, file_name_only)
 
-## [b][Shorterhand][/b][br]
-## Create a performance message.[br][br]
-##
-## [param message]: ([member Variant]) Takes in a message.[br]
-## [param obj]: ([member Object]) Defaults to null - recommended
-## [member self].[br]
-## [param file_name_only]: ([member bool]) Use only the file name.
-func p(message: Variant, obj: Object = null,
-       file_name_only: bool = false) -> void:
-    performance(message, obj, file_name_only)
+func n(message, obj := null, file_name_only := false):
+	network(message, obj, file_name_only)
+
+func p(message, obj := null, file_name_only := false):
+	performance(message, obj, file_name_only)
